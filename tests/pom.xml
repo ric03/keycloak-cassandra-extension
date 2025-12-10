@@ -21,7 +21,7 @@
     <surefire.memory.metaspace.max>512m</surefire.memory.metaspace.max>
     <surefire.memory.settings>-Xms${surefire.memory.Xms} -Xmx${surefire.memory.Xmx}
             -XX:MetaspaceSize=${surefire.memory.metaspace} -XX:MaxMetaspaceSize=${surefire.memory.metaspace.max}</surefire.memory.settings>
-    <surefire.system.args></surefire.system.args>
+    <surefire.system.args/>
   </properties>
 
   <dependencies>
@@ -187,8 +187,8 @@
             <configuration>
               <target>
                 <delete>
-                  <fileset dir="${project.build.directory}" includes="map-*.json"></fileset>
-                  <fileset dir="${project.build.directory}" includes="map/**/*.json"></fileset>
+                  <fileset dir="${project.build.directory}" includes="map-*.json"/>
+                  <fileset dir="${project.build.directory}" includes="map/**/*.json"/>
                 </delete>
               </target>
             </configuration>
