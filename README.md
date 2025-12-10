@@ -20,10 +20,10 @@ If "cache mode" is active (`KC_COMMUNITY_DATASTORE_CASSANDRA_CACHE_ENABLED=true`
 
 The following parameters might be needed in addition to the configuration options of this extension (see below):
 
-| CLI-Parameter                                                              | Description                               |
-|----------------------------------------------------------------------------|-------------------------------------------|
+| CLI-Parameter                                                           | Description                               |
+|-------------------------------------------------------------------------|-------------------------------------------|
 | --features-disabled=authorization,admin-fine-grained-authz,organization | Disable unsupported features              |
-| --spi-connections-jpa-legacy-enabled=false                                 | Deactivate automatic JPA schema migration |
+| --spi-connections-jpa-legacy-enabled=false                              | Deactivate automatic JPA schema migration |
 
 ## Configuration options
 
@@ -105,3 +105,22 @@ The official Keycloak implementation now executes a `dependsOn()` for each provi
 This will implicitly initialize the default JPA-Provider. 
 
 To circumvent this problem you may want to define a "NullProvider" which overrides the default JPA-Provider.
+
+## Troubleshooting
+
+### Docker Environment Not Found for Integration Tests
+
+The Integration Tests require a container runtime.
+If you encounter the error "Could not find a valid Docker environment", this typically occurs when:
+
+1. Docker is not running
+2. You're using Podman instead of Docker
+3. The container socket is not accessible
+
+**For Podman users:**
+To run the tests with Podman, configure the Docker compatibility socket:
+
+```shell
+export DOCKER_HOST=unix://${XDG_RUNTIME_DIR}/podman/podman.sock
+mvn clean verify
+```
